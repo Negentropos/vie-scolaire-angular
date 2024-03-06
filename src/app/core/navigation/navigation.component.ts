@@ -33,23 +33,24 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   //hide or show navigation bar
   showNavbar : boolean = true;
-  subscription : Subscription;
+  subscription$ : Subscription;
+  userRole: string = "parent";
 
-  auth!:AuthService;
-  user$!:Observable<User> | null;
+  user$!:Observable<User>;
 
   constructor(
     private router:Router,
-    private authService : AuthService,
-    private navbarService : NavbarService){
-      this.subscription = this.navbarService.showNavbar.subscribe((value)=>{
+    private navbarService : NavbarService,
+    private authService : AuthService){
+      this.subscription$ = this.navbarService.showNavbar.subscribe((value)=>{
         this.showNavbar = value;
       })
     }
 
   ngOnInit():void{
-    this.auth = this.authService;
-    this.user$ = this.authService.getUser();
+    //let userId  = this.authService.getUserId();
+    //this.user$ = this.authService.getUser(userId);
+    //this.user$.subscribe((user)=>this.userRole = user.role.name);
   }
 
   logOut() {
@@ -61,7 +62,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy():void{
-    this.subscription.unsubscribe()
+    this.subscription$.unsubscribe()
   }
   
 }

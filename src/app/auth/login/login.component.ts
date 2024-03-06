@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   name!: string;
   password!: string;
-  auth!: AuthService;
   message!:string;
 
   constructor(
@@ -34,12 +33,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.navbarService.hide();
-    this.auth = this.authService;
     this.message=''
   }
 
   login() {
-    let log = this.auth.login(this.name, this.password)
+    let log = this.authService.login(this.name, this.password)
     if (log){
       this.router.navigateByUrl('childs')
     }
@@ -49,10 +47,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    this.auth.logout();
+    this.authService.logout();
   }
-
-
   
-
 }

@@ -42,13 +42,11 @@ export class AuthService {
     return this.localStorage.retrieve('access_token');
   }
 
-  getUser():Observable<User> | null {
-      const number = this.localStorage.retrieve('userId')
-      if (number){
-        return this.userService.getUserById(parseInt(number))
-      }
-      else {
-      return null
-    }
+  getUser(userId : number):Observable<User> {
+      return this.userService.getUserById(userId);
+  }
+
+  getUserId():number{
+    return this.localStorage.retrieve('userId')
   }
 }

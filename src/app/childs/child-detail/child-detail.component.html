@@ -1,10 +1,11 @@
 <div class="container-fluid container-xl mt-xl-5">
     <div class="row">
         <div class="col-xl-8 offset-xl-2 col-12">
-            <mat-card class="p-3" *ngIf="child$ | async as child">
-                <mat-card-header>
-                    <div class="row">
-                        <div class="col">
+            <mat-card class="p-3 mt-3 pb-2" *ngIf="child$ | async as child">
+        
+                <mat-card-content class=" mb-2">
+                    <div class="row justify-content-between">
+                        <div class="col-6 mb-3">
                             <mat-card-title>
                                 {{ child.firstName }} {{ child.lastName }} 
                             </mat-card-title>
@@ -12,25 +13,17 @@
                                 {{ child.classSchool | className }}
                             </mat-card-subtitle>
                         </div>
-                        <div class="col">
-                            <div class="d-flex justify-content-end">
-                                <button mat-fab (click)="onAddNewAbsence(child)" matTooltip="Signaler une absence"
+                        <div class="col d-flex justify-content-end">
+                                <button mat-mini-fab (click)="onAddNewAbsence(child)" matTooltip="Signaler une absence"
                                 matTooltipPosition="below" color="accent" aria-label="Absence button">
                                     <mat-icon>calendar_today</mat-icon>
                                 </button>
-                                <button mat-fab color="warn" matTooltip="Informations de contact"
+                                <button mat-mini-fab color="warn" matTooltip="Informations de contact"
                                 matTooltipPosition="below" class="ms-3" (click)="openParentsInfo(child.users)">
                                     <mat-icon>contacts</mat-icon>
                                 </button>
-                            </div>
                         </div>
                     </div>
-                            
-                </mat-card-header>
-
-                
-        
-                <mat-card-content class="mt-4 mb-2">
                     @if (child.absences.length != 0) {
         
                         <app-absences-child-list [absences]="child.absences"></app-absences-child-list>
