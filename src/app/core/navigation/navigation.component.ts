@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { MatToolbar } from '@angular/material/toolbar';
@@ -29,10 +29,12 @@ import { NavbarService } from '../services/navbar.service';
         AsyncPipe,
     ],
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent implements OnInit, OnDestroy {
 
+  //hide or show navigation bar
   showNavbar : boolean = true;
   subscription : Subscription;
+
   auth!:AuthService;
   user$!:Observable<User> | null;
 
@@ -59,7 +61,7 @@ export class NavigationComponent implements OnInit {
   }
 
   ngOnDestroy():void{
-
+    this.subscription.unsubscribe()
   }
   
 }

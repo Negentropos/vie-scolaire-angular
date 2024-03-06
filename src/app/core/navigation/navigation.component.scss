@@ -1,3 +1,10 @@
 .spacer {
     flex: 1 1 auto;
   }
+
+  .logo {
+      overflow-clip-margin: content-box;
+      overflow: clip;
+      vertical-align: middle;
+      height:30px;
+  }

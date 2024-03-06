@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../core/services/auth.services';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -6,6 +6,7 @@ import { NgIf } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { NavbarService } from '../../core/services/navbar.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   name!: string;
   password!: string;
@@ -23,10 +24,16 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService, 
-    private router: Router
+    private router: Router,
+    private navbarService : NavbarService,
   ) { }
 
+  ngOnDestroy(): void {
+    this.navbarService.display()
+  }
+
   ngOnInit() {
+    this.navbarService.hide();
     this.auth = this.authService;
     this.message=''
   }

@@ -21,5 +21,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),provideHttpClient(withFetch()),
     provideMomentDateAdapter(),
     httpInterceptorProviders,
+    importProvidersFrom(NgxWebstorageModule.forRoot())
   ]
 };

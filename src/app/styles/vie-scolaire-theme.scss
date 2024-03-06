@@ -1,0 +1,94 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$vert-palette:(
+    50:#e0f7fa,
+    100:#b2ebf2,
+    200:#80dde9,
+    300:#4dcfe0,
+    400:#26c5d9,
+    500:#00bbd3,
+    600:#00abc0,
+    700:#0096a6,
+    800:#00828e,
+    900:#005f63,
+    contrast: (
+        50: rgba(black, 0.87),
+        100: rgba(black, 0.87),
+        200: rgba(black, 0.87),
+        300: rgba(black, 0.87),
+        400: rgba(black, 0.87),
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+   )
+);
+
+$magenta-palette:(
+    50: #fce6f0,
+    100: #f7bfdb,
+    200: #f595c3,
+    300: #f46aaa,
+    400:#f24995,
+    500:#f32980,
+    600:#e1277c,
+    700:#ca2575,
+    800:#b4236f,
+    900:#8d1e64,
+    contrast: (
+        50: rgba(black, 0.87),
+        100: rgba(black, 0.87),
+        200: rgba(black, 0.87),
+        300: rgba(black, 0.87),
+        400: rgba(black, 0.87),
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+   )
+);
+
+$violet-palette:(
+    50: #f0e6f2,
+    100: #dac1e0,
+    200:#c299cb ,
+    300: #aa73b6,
+    400:#9859a6,
+    500:#874397,
+    600:#7c3e90,
+    700:#6b3786,
+    800:#5d327c,
+    900:#432867,
+    contrast: (
+        50: rgba(black, 0.87),
+        100: rgba(black, 0.87),
+        200: rgba(black, 0.87),
+        300: rgba(black, 0.87),
+        400: rgba(black, 0.87),
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+   )
+);
+
+$my-primary: mat.define-palette($vert-palette, 800);
+$my-accent: mat.define-palette($magenta-palette, 700);
+$my-warn: mat.define-palette($violet-palette, 600);
+
+$my-theme: mat.define-light-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+   warn: $my-warn,
+ ),
+ typography: mat.define-typography-config(),
+ density: 0,
+));
+
+@include mat.all-component-themes($my-theme);

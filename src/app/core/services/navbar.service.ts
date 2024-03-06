@@ -16,7 +16,7 @@ export class NavbarService {
     this.showNavbar.next(false)
   }
 
-  show():void{
+  display():void{
     this.showNavbar.next(true)
   }
 }
