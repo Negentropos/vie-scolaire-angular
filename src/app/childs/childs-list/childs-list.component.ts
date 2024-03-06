@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Child } from '../../models/child';
-import { ChildService } from '../services/child.service';
+import { ChildService } from '../../core/services/child.service';
 import { Router } from '@angular/router';
 import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow, MatNoDataRow } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -10,6 +10,7 @@ import { MatIconButton } from '@angular/material/button';
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatCard, MatCardContent, MatCardModule } from '@angular/material/card';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-childs-list',
@@ -49,11 +50,15 @@ export class ChildsListComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.childService.getAllChilds().subscribe(childs => {
+    this.childService.getAllChilds().pipe(take(1)).subscribe(childs => {
       this.dataSource.data = childs;
       this.dataSource.paginator=this.paginator;
       this.dataSource.sort=this.sort;
     })
+  }
+
+  ngOnDestroy():void{
+
   }
 
   applyFilter(event: Event) {

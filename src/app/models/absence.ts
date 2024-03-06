@@ -1,5 +1,3 @@
-import { Time } from "@angular/common";
-import { Child } from "./child";
 import { User } from "./user";
 
 export interface Absence {

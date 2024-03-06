@@ -19,10 +19,5 @@ export class AbsencesChildListComponent {
   @ViewChild(MatAccordion) accordion!: MatAccordion;
 
   @Input() absences!: Absence[];
-
   
-
-  
-
-
 }

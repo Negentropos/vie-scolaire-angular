@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Signaler une absence</h2>
 <mat-dialog-content class="mat-typography">
-  <h3>{{ child.firstName }} {{child.lastName}} {{ child.classSchool | className }}</h3>
+  <h3>{{ child.firstName }} {{child.lastName}} {{ child.classSchool| className }}</h3>
   <mat-stepper orientation="vertical" [linear]="false" #stepper>
     <mat-step [stepControl]="dateFormGroup" errorMessage="Date incomplète.">
         <form [formGroup]="dateFormGroup">

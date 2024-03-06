@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Absence } from '../../models/absence';
 import { environment } from '../../../environments/environment.prod';
+import { Absence } from '../../models/absence';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,12 +11,12 @@ export class AbsenceService {
 
   constructor(private http : HttpClient) { }
 
-  getAllChilds():Observable<Absence[]>{
-    return this.http.get<Absence[]>(`${environment.apiUrl}/childs`);
+  getAllAbsences():Observable<Absence[]>{
+    return this.http.get<Absence[]>(`${environment.apiUrl}/absences`);
   }
 
-  getChildById(id : number):Observable<Absence>{
-    return this.http.get<Absence>(`${environment.apiUrl}/childs/${id}`)
+  getAbsenceById(id : number):Observable<Absence>{
+    return this.http.get<Absence>(`${environment.apiUrl}/absences/${id}`)
   }
 
   addNewAbsence(absence : Absence):Observable<Absence>{

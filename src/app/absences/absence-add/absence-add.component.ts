@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { MatButtonModule } from '@angular/material/button';
 import { ClassNamePipe } from '../../shared/pipes/class-name.pipe';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Observable, map, startWith, tap } from 'rxjs';
+import { Observable, map, startWith, take, tap } from 'rxjs';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule} from '@angular/material/datepicker';
@@ -15,11 +15,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { MatCardModule } from '@angular/material/card';
-import { AbsenceService } from '../services/absence.service';
-import { Router } from '@angular/router';
 import { Absence } from '../../models/absence';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AbsenceService } from '../../core/services/absence.service';
+import { ClassSchool } from '../../models/class-school';
+import { ClassSchoolService } from '../../core/services/class-school.service';
 
 
 
@@ -59,7 +60,7 @@ export class AbsenceAddComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public child: Child,
       private formBuilder : FormBuilder,
       private absenceService : AbsenceService,
-      private router : Router,
+      private classSchoolService : ClassSchoolService,
       ) {} 
 
   minDate!: Date;

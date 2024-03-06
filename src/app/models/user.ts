@@ -10,4 +10,5 @@ export interface User {
     cycles : Cycle[];
     tel1 : string;
     tel2 : string;
+    childId: number[];
 }

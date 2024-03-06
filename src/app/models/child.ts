@@ -8,6 +8,6 @@ export interface Child {
     lastName : string;
     gender : string;
     classSchool : ClassSchool;
-    users : User[];
-    absences : Absence[];
+    users : number[];
+    absences : number[];
 }
