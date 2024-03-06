@@ -1,0 +1,31 @@
+<div class="d-flex align-items-center login-container bg-image">
+  <main class="w-100 m-auto form-signin">
+    <form>
+      <img src="../../../assets/Logo_EMG.png" alt="logoEMG">
+      <div class="row mt-3">
+        <div class="col-12 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2 text-center">
+
+          <div *ngIf="message.length > 0">
+            <p>{{ message }}</p>
+          </div>
+          
+          <div class="form-floating mb-3 m-auto">
+            <input class="form-control" type="text" placeholder="Identifiant" id="name" [(ngModel)]="name" name="name">
+            <label for="name">Identifiant</label>
+          </div>
+
+          <div class="form-floating mb-3 m-auto">
+            <input class="form-control" type="password" placeholder="Mot de passe" id="password" [(ngModel)]="password" name="password">
+            <label for="password">Mot de passe</label>
+          </div>
+        
+          <div>
+            <button class="w-75" mat-raised-button (click)="login()" color="primary">Connexion</button>
+          </div>
+  
+        </div>
+      </div>
+  
+    </form>
+  </main>
+</div>

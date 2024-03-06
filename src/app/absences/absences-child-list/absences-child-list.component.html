@@ -1,0 +1,43 @@
+<div>
+    <button mat-button (click)="accordion.openAll()">Expand All</button>
+    <button mat-button (click)="accordion.closeAll()">Collapse All</button>
+</div>
+<mat-accordion multi>
+    @for (absence of absences; track absence.id) {
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ absence.date | date : 'dd/MM/yyyy' }}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{ absence.description }}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+                @if (absence.allDay) {
+                    <p>Journée entière.</p>
+                } @else {
+                    <p>De {{ absence.startTime}} à {{ absence.endTime }}</p>
+                }
+            <p>
+                @if (absence.canteen || absence.nursery || absence.afterSchool) {
+                    <mat-divider></mat-divider>
+                }
+
+                @if (absence.canteen) {
+                    <span>Annulation cantine </span>
+                }
+
+                @if (absence.nursery) {
+                    <span>Annulation cantine </span>
+                }
+
+                @if (absence.afterSchool) {
+                    <span>Annulation cantine </span>
+                }
+            </p>
+            <mat-divider></mat-divider>
+            <p>Absence déclarée le {{ absence.declarationDate | date : "dd/MM/yyyy à HH:mm" }} par  {{ absence.user?.firstName}} {{ absence.user?.lastName}}</p>
+          </mat-expansion-panel>
+    }
+   
+</mat-accordion>

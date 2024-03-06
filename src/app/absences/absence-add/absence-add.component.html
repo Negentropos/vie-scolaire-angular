@@ -1,0 +1,163 @@
+<h2 mat-dialog-title>Signaler une absence</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>{{ child.firstName }} {{child.lastName}} {{ child.classSchool | className }}</h3>
+  <mat-stepper orientation="vertical" [linear]="false" #stepper>
+    <mat-step [stepControl]="dateFormGroup" errorMessage="Date incomplète.">
+        <form [formGroup]="dateFormGroup">
+            <ng-template matStepLabel>Date(s)</ng-template>
+
+            <mat-radio-group aria-label="Select an option" formControlName="severalDays">
+                <mat-radio-button value="oneDay">Absence ponctuelle</mat-radio-button>
+                <mat-radio-button value="more">Absence longue durée</mat-radio-button>
+            </mat-radio-group>
+
+            @if (showEndDate$ | async) {
+                <div>
+                <mat-form-field>
+                    <mat-label>Choisir une durée</mat-label>
+                    <mat-date-range-input [rangePicker]="RangeDatepicker">
+                      <input matStartDate placeholder="Date de début" (focus)="RangeDatepicker.open()" formControlName="startDate" [min]="minDate" required>
+                      <input matEndDate placeholder="Date de fin" (focus)="RangeDatepicker.open()" formControlName="endDate">
+                    </mat-date-range-input>
+                    <mat-hint>JJ/MM/AAAA – JJ/MM/AAAA</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="RangeDatepicker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #RangeDatepicker></mat-date-range-picker>
+                  </mat-form-field>
+                </div>
+                
+            } @else {
+                <div>
+                <mat-form-field>
+                    <mat-label>Choisir une date</mat-label>
+                    <input matInput [min]="minDate" [matDatepicker]="startDatePicker" (focus)="startDatePicker.open()" formControlName="startDate" required>
+                    <mat-hint>JJ/MM/AAAA</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #startDatePicker></mat-datepicker>
+                </mat-form-field>
+                </div>
+            }
+
+            <mat-radio-group aria-label="Select an option" formControlName="specifiedHours">
+                <mat-radio-button value="fullDay">Toute la journée</mat-radio-button>
+                <mat-radio-button value="noFullDay">Horaires spécifiés</mat-radio-button>
+            </mat-radio-group>
+            
+            @if (showTimes$ | async) {
+                <div>
+                <mat-form-field>
+                    <mat-label>Heure de début</mat-label>
+                    <input type="time" matInput placeholder="00:00" formControlName="startTime">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Heure de fin</mat-label>
+                    <input type="time" matInput placeholder="00:00" formControlName="endTime">
+                </mat-form-field>
+                </div>
+            }
+
+            <div>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="desinscriptionFormGroup">
+        <form [formGroup]="desinscriptionFormGroup">
+            <ng-template matStepLabel>Service(s)</ng-template>
+
+            <h4>Je souhaite désinscrire mon enfant des services ci-dessous : </h4>
+
+            <mat-checkbox formControlName="canteenCtrl" 
+            matTooltip="Attention, la cantine ne sera pas facturée si la description a lieu au plus tard à 9h pour le jour même.">
+            cantine
+            </mat-checkbox>
+
+            @if (child.classSchool.cycle.code === "JE") {
+                <mat-checkbox formControlName="nurseryCtrl">garderie</mat-checkbox>
+            }
+
+            @if (child.classSchool.cycle.code === "PC") {
+                <mat-checkbox formControlName="afterSchoolCtrl">périscolaire</mat-checkbox>
+            }
+
+            <div>
+                <button mat-button matStepperPrevious>Retour</button>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="descriptionFormGroup" errorMessage="Précisez le motif de l'absence">
+        <form [formGroup]="descriptionFormGroup">
+            <ng-template matStepLabel>Motif</ng-template>
+
+            <mat-form-field>
+                <textarea matInput formControlName="descriptionCtrl"
+                    placeholder="Ex : Raisons de santé, contrôle de maths, cours d'aquaponey etc." 
+                    required>
+                </textarea>
+            </mat-form-field>
+        
+            <div>
+                <button mat-button matStepperPrevious>Retour</button>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
+      </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Validation</ng-template>
+      @if (absenceFormGroup.invalid) {
+        <p>Vous ne pouvez valider cette absence, le formulaire est incomplet.</p>
+      } @else {
+        <p>Souhaitez-vous enregistrer cette absence ?</p>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-subtitle>{{child.firstName}} {{child.lastName}} {{ child.classSchool | className }}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <div>
+                        @if (dateFormGroup.value.severalDays === 'oneDay') {
+                            Absence le {{ dateFormGroup.value.startDate | date : "dd/MM/yyyy" }}
+                           } @else {
+                            Absence du {{ dateFormGroup.value.startDate | date : "dd/MM/yyyy" }} au {{ dateFormGroup.value.endDate | date : "dd/MM/yyyy" }}
+                           }
+                    </div>
+                    <div>
+                        @if (dateFormGroup.value.specifiedHours === 'fullDay') {
+                            @if (dateFormGroup.value.severalDays === 'oneDay') {
+                                Journée entière
+                               } @else {
+                                Journées entières
+                               }
+                           } @else {
+                            de {{ dateFormGroup.value.startTime  }} à {{ dateFormGroup.value.endTime }}
+                           }
+                    </div>
+                    <div>
+                        @if (desinscriptionFormGroup.value.canteenCtrl) {
+                            <p>Je souhaite désinscrire mon enfant de la cantine.</p>
+                        }
+                        @if (desinscriptionFormGroup.value.nurseryCtrl) {
+                            <p>Je souhaite désinscrire mon enfant de la garderie.</p>
+                        }
+                        @if (desinscriptionFormGroup.value.afterSchoolCtrl) {
+                            <p>Je souhaite désinscrire mon enfant du périscolaire.</p>
+                        }
+                        
+                    </div>
+                    <div>
+                        Motif de l'absence : {{ descriptionFormGroup.value.descriptionCtrl }}
+                    </div>
+                    
+                </mat-card-content>
+            </mat-card>
+        }
+      <div>
+        <button mat-button (click)="onSubmitForm()" [disabled]="absenceFormGroup.invalid">Enregistrer</button>
+        <button mat-button matStepperPrevious>Retour</button>
+        <button mat-button (click)="stepper.reset()">Réinitialiser</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Annuler</button>
+</mat-dialog-actions>

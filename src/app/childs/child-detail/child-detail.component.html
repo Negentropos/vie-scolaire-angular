@@ -1,0 +1,42 @@
+<div class="container-fluid container-xl mt-xl-5">
+    <div class="row">
+        <div class="col-xl-8 offset-xl-2 col-12">
+            <mat-card class="p-3" *ngIf="child$ | async as child">
+                <mat-card-header>
+                <mat-card-title>
+                    {{ child.firstName }} {{ child.lastName }} 
+                    @switch (child.gender) {
+                        @case ('m') {
+                            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="male"></mat-icon>
+                        }
+                        @case ('f') {
+                            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="female"></mat-icon>
+                        }
+                        @default {
+                            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="transgender"></mat-icon>
+                        }
+                    }
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        {{ child.classSchool | className }}
+                        
+                    </mat-card-subtitle>
+                </mat-card-header>
+        
+                <mat-card-content>
+                    @if (child.absences.length != 0) {
+        
+                        <app-absences-child-list [absences]="child.absences"></app-absences-child-list>
+        
+                    } @else {
+                        <span>Aucune absence enregistrée.</span>
+                    }
+                </mat-card-content>
+                <mat-card-actions>
+                <button mat-button (click)="onAddNewAbsence(child)">Ajouter Absence</button>
+                <button mat-button (click)="openParentsInfo(child.users)">Contact</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

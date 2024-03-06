@@ -1,0 +1,23 @@
+<mat-toolbar color="primary" *ngIf="user$ | async as user" >
+      <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu" aria-label="Example icon-button with menu icon" *ngIf="user.role.name !== 'parent' ">
+        <mat-icon>apps</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <a mat-list-item routerLink="childs/">
+            <mat-icon>people</mat-icon>
+            <span>Élèves</span>
+          </a>
+        </button>
+      </mat-menu>
+      <span>Vie scolaire</span>
+      <span class="spacer"></span>
+      <span>{{ user.firstName }} {{ user.lastName }} </span>
+    <button (click)="onMyProfilClick()" mat-icon-button matTooltip="Mon profil" matTooltipPosition="below" aria-label="account icon">
+        <mat-icon>account_circle</mat-icon>
+    </button>
+    <button (click)="logOut()" mat-icon-button matTooltip="Déconnexion" matTooltipPosition="below" aria-label="logout icon">
+        <mat-icon>exit_to_app</mat-icon>
+    </button>
+</mat-toolbar>
+

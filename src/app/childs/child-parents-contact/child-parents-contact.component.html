@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>{{"Responsable" | pluralize: users.length}}</h2>
+<mat-dialog-content>
+ @for (user of users ; track user.id) {
+    <div>{{ user.firstName }} {{ user.lastName}} {{user.tel1}} {{user.tel2}} {{ user.email }} </div>
+    @if (!$last) {
+      <mat-divider></mat-divider>
+    }
+  } @empty {
+    <div>Aucun responsable renseigné.</div>
+  }
+</mat-dialog-content>
