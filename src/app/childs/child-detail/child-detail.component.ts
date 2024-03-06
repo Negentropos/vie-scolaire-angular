@@ -13,6 +13,7 @@ import { User } from '../../models/user';
 import { AbsencesChildListComponent } from '../../absences/absences-child-list/absences-child-list.component';
 import { AbsenceAddComponent } from '../../absences/absence-add/absence-add.component';
 import { ClassNamePipe } from '../../shared/pipes/class-name.pipe';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
     selector: 'app-child-detail',
@@ -28,6 +29,7 @@ import { ClassNamePipe } from '../../shared/pipes/class-name.pipe';
         AsyncPipe,
         AbsencesChildListComponent,
         ClassNamePipe,
+        MatTooltipModule,
     ],
 })
 export class ChildDetailComponent implements OnInit {
