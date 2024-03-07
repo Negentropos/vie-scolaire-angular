@@ -48,9 +48,8 @@ export class NavigationComponent implements OnInit, OnDestroy {
     }
 
   ngOnInit():void{
-    //let userId  = this.authService.getUserId();
-    //this.user$ = this.authService.getUser(userId);
-    //this.user$.subscribe((user)=>this.userRole = user.role.name);
+    let userId  = this.authService.getUserId();
+    this.user$ = this.authService.getUser(userId);
   }
 
   logOut() {

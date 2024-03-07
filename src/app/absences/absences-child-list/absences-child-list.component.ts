@@ -1,9 +1,11 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Absence } from '../../models/absence';
 import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
-import { DatePipe } from '@angular/common';
+import { AsyncPipe, DatePipe, NgIf } from '@angular/common';
 import {MatDividerModule} from '@angular/material/divider';
+import { AbsenceService } from '../../core/services/absence.service';
+import { Observable } from 'rxjs';
 
 
 
@@ -11,13 +13,24 @@ import {MatDividerModule} from '@angular/material/divider';
 @Component({
   selector: 'app-absences-child-list',
   standalone: true,
-  imports: [MatExpansionModule,MatAccordion,MatButtonModule,DatePipe,MatDividerModule],
+  imports: [MatExpansionModule,MatAccordion,NgIf,AsyncPipe,MatButtonModule,DatePipe,MatDividerModule],
   templateUrl: './absences-child-list.component.html',
   styleUrl: './absences-child-list.component.scss'
 })
-export class AbsencesChildListComponent {
+export class AbsencesChildListComponent implements OnInit{
   @ViewChild(MatAccordion) accordion!: MatAccordion;
 
-  @Input() absences!: Absence[];
+  @Input() absencesId!: number[];
+  absencesList:Observable<Absence>[] = new Array();
+
+  constructor(private absenceService : AbsenceService){}
+
+  ngOnInit(): void {
+    this.absencesId.forEach((absenceId) => this.absencesList.push(this.absenceService.getAbsenceById(absenceId)))
+  }
+
+
+
+
   
 }

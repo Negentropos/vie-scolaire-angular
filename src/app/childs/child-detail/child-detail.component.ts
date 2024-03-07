@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, take } from 'rxjs';
+import { Observable, map, take } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { NgIf, NgFor, AsyncPipe } from '@angular/common';
 import { Child } from '../../models/child';
@@ -9,14 +9,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {MatDialog,} from '@angular/material/dialog';
 import { ChildParentsContactComponent } from '../child-parents-contact/child-parents-contact.component';
-import { User } from '../../models/user';
 import { AbsencesChildListComponent } from '../../absences/absences-child-list/absences-child-list.component';
 import { AbsenceAddComponent } from '../../absences/absence-add/absence-add.component';
 import { ClassNamePipe } from '../../shared/pipes/class-name.pipe';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { UserService } from '../../core/services/user.service';
-import { Absence } from '../../models/absence';
-import { ClassSchool } from '../../models/class-school';
 import { AbsenceService } from '../../core/services/absence.service';
 import { ClassSchoolService } from '../../core/services/class-school.service';
 
@@ -39,10 +36,7 @@ import { ClassSchoolService } from '../../core/services/class-school.service';
 })
 export class ChildDetailComponent implements OnInit {
 
-  child!:Child;
-  childUsers!:User[];
-  childAbsences!:Absence[];
-
+  child$!:Observable<Child>;
 
   constructor(
     private childService : ChildService,
@@ -55,8 +49,7 @@ export class ChildDetailComponent implements OnInit {
 
   ngOnInit():void{
     const childId = +this.route.snapshot.params['id'];
-    this.childService.getChildById(childId).pipe(take(1)).subscribe(child => this.child=child);
-    this.child.absences.forEach((absenceId) =>  this.absenceService.getAbsenceById(absenceId).pipe(take(1)).subscribe(absence => this.childAbsences.push(absence)))
+    this.child$ = this.childService.getChildById(childId);
   }
 
 
@@ -66,10 +59,9 @@ export class ChildDetailComponent implements OnInit {
     })
   }
 
-  openParentsInfo(childUsers : number[]):void {
-    childUsers.forEach((userId)=> this.userService.getUserById(userId).pipe(take(1)).subscribe(user => this.childUsers.push(user)))
+  openParentsInfo(childUsersId : number[]):void {
     const dialogRef = this.dialog.open(ChildParentsContactComponent, {
-      data: this.childUsers,
+      data: childUsersId,
     });
 
     //TODO voir si ici on peut pas provoquer réactualisation de la page pour voir si nouvelles absences

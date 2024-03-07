@@ -11,6 +11,7 @@ import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatCard, MatCardContent, MatCardModule } from '@angular/material/card';
 import { take } from 'rxjs';
+import { ClassNamePipe } from '../../shared/pipes/class-name.pipe';
 
 @Component({
   selector: 'app-childs-list',
@@ -34,6 +35,7 @@ import { take } from 'rxjs';
     MatHeaderRow,
     MatRowDef,
     MatRow,
+    ClassNamePipe,
     MatNoDataRow,
     MatPaginator,],
   templateUrl: './childs-list.component.html',
@@ -55,10 +57,6 @@ export class ChildsListComponent implements AfterViewInit {
       this.dataSource.paginator=this.paginator;
       this.dataSource.sort=this.sort;
     })
-  }
-
-  ngOnDestroy():void{
-
   }
 
   applyFilter(event: Event) {

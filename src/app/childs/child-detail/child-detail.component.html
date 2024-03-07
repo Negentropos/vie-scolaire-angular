@@ -1,7 +1,7 @@
 <div class="container-fluid container-xl mt-xl-5">
     <div class="row">
         <div class="col-xl-8 offset-xl-2 col-12">
-            <mat-card class="p-3 mt-3 pb-2">
+            <mat-card class="p-3 mt-3 pb-2" *ngIf="child$ | async as child">
         
                 <mat-card-content class=" mb-2">
                     <div class="row justify-content-between">
@@ -26,7 +26,7 @@
                     </div>
                     @if (child.absences.length != 0) {
         
-                        <app-absences-child-list [absences]="childAbsences"></app-absences-child-list>
+                        <app-absences-child-list [absencesId]="child.absences"></app-absences-child-list>
         
                     } @else {
                         <span>Aucune absence enregistrée.</span>

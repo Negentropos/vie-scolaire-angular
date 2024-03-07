@@ -1,5 +1,5 @@
 <div *ngIf="showNavbar">
-    <mat-toolbar color="primary" >
+    <mat-toolbar color="primary" *ngIf="user$ | async as user" >
         <button mat-icon-button class="ms-5" [matMenuTriggerFor]="menu" aria-label="menu icon">
           <mat-icon>apps</mat-icon>
         </button>
@@ -14,7 +14,7 @@
         <img class="logo me-2" src="../../../assets/Logo_EMG_mini.png" alt="Logo EMG">
         <span>Vie scolaire</span>
         <span class="spacer"></span>
-        <span *ngIf="user$ | async as user">{{user.firstName}} {{ user.lastName }}</span>
+        <span>{{user.firstName}} {{ user.lastName }}</span>
       <button (click)="onMyProfilClick()" mat-icon-button matTooltip="Mon profil" matTooltipPosition="below" aria-label="account icon">
           <mat-icon>account_circle</mat-icon>
       </button>
