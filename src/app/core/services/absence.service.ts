@@ -22,4 +22,8 @@ export class AbsenceService {
   addNewAbsence(absence : Absence):Observable<Absence>{
     return this.http.post<Absence>(`${environment.apiUrl}/absences`,absence)
   }
+
+  getAbsenceByChildId(childId : number):Observable<Absence[]>{
+    return this.http.get<Absence[]>(`${environment.apiUrl}/absences?childId=${childId}`);
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, map, take } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
@@ -13,9 +13,8 @@ import { AbsencesChildListComponent } from '../../absences/absences-child-list/a
 import { AbsenceAddComponent } from '../../absences/absence-add/absence-add.component';
 import { ClassNamePipe } from '../../shared/pipes/class-name.pipe';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { UserService } from '../../core/services/user.service';
-import { AbsenceService } from '../../core/services/absence.service';
-import { ClassSchoolService } from '../../core/services/class-school.service';
+import { AuthService } from '../../core/services/auth.services';
+import { User } from '../../models/user';
 
 @Component({
     selector: 'app-child-detail',
@@ -37,25 +36,27 @@ import { ClassSchoolService } from '../../core/services/class-school.service';
 export class ChildDetailComponent implements OnInit {
 
   child$!:Observable<Child>;
+  user$!:Observable<User>;
 
   constructor(
     private childService : ChildService,
     private route : ActivatedRoute,
-    private router : Router,
-    private absenceService : AbsenceService,
-    private classSchoolService : ClassSchoolService,
-    private userService : UserService,
+    private authService : AuthService,
     public dialog: MatDialog){}
 
   ngOnInit():void{
     const childId = +this.route.snapshot.params['id'];
     this.child$ = this.childService.getChildById(childId);
+    this.user$ = this.authService.getUser(this.authService.getUserId())
   }
 
 
-  onAddNewAbsence(child : Child):void{
+  onAddNewAbsence(currentChild : Child,currentUser : User):void{
     this.dialog.open(AbsenceAddComponent,{
-      data : child,
+      data : {
+        child : currentChild,
+        user : currentUser
+      },
     })
   }
 

@@ -19,7 +19,8 @@ export class AuthService {
     const isLoggedIn = (name == 'clement' && password == '123')  ;
     if (isLoggedIn){
       this.localStorage.store("access_token","falseToken");
-      this.localStorage.store("userId",8);
+      this.localStorage.store("userId",9);
+      this.localStorage.store("userRole","parent")
       return true;
     } else {
       return false;
@@ -35,6 +36,7 @@ export class AuthService {
   logout() {
     this.localStorage.clear('access_token');
     this.localStorage.clear('userId');
+    this.localStorage.clear('userRole');
     this.router.navigateByUrl('/login');
   }
 
@@ -44,6 +46,10 @@ export class AuthService {
 
   getUser(userId : number):Observable<User> {
       return this.userService.getUserById(userId);
+  }
+
+  getRole():string{
+    return this.localStorage.retrieve('userRole')
   }
 
   getUserId():number{

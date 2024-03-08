@@ -18,4 +18,9 @@ export class ChildService {
   getChildById(id : number):Observable<Child>{
     return this.http.get<Child>(`${environment.apiUrl}/childs/${id}`)
   }
+
+  addAbsenceToChild(absenceId : number, child : Child):Observable<Child>{
+    child.absences.push(absenceId);
+    return this.http.put<Child>(`${environment.apiUrl}/childs/${child.id}`,child)
+  }
 }

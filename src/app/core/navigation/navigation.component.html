@@ -1,6 +1,8 @@
 <div *ngIf="showNavbar">
     <mat-toolbar color="primary" *ngIf="user$ | async as user" >
-        <button mat-icon-button class="ms-5" [matMenuTriggerFor]="menu" aria-label="menu icon">
+      <span class="ms-lg-5"></span>
+      @if (user.role.name !== "parent") {
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu icon">
           <mat-icon>apps</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
@@ -11,14 +13,16 @@
             </a>
           </button>
         </mat-menu>
+      }
+        
         <img class="logo me-2" src="../../../assets/Logo_EMG_mini.png" alt="Logo EMG">
         <span>Vie scolaire</span>
         <span class="spacer"></span>
-        <span>{{user.firstName}} {{ user.lastName }}</span>
-      <button (click)="onMyProfilClick()" mat-icon-button matTooltip="Mon profil" matTooltipPosition="below" aria-label="account icon">
+        <span class="d-none d-sm-block">{{user.firstName}} {{ user.lastName }}</span>
+      <button (click)="openProfilInfo(user)" mat-icon-button matTooltip="Mon profil" matTooltipPosition="below" aria-label="account icon">
           <mat-icon>account_circle</mat-icon>
       </button>
-      <button class="me-5" (click)="logOut()" mat-icon-button matTooltip="Déconnexion" matTooltipPosition="below" aria-label="logout icon">
+      <button class="me-lg-5" (click)="logOut()" mat-icon-button matTooltip="Déconnexion" matTooltipPosition="below" aria-label="logout icon">
           <mat-icon>exit_to_app</mat-icon>
       </button>
     </mat-toolbar>

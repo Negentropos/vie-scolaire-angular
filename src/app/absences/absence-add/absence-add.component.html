@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Signaler une absence</h2>
 <mat-dialog-content class="mat-typography">
-  <h3>{{ child.firstName }} {{child.lastName}} {{ child.classSchool| className }}</h3>
+  <h3>{{ data.child.firstName }} {{data.child.lastName}} {{ data.child.classSchool| className }}</h3>
   <mat-stepper orientation="vertical" [linear]="false" #stepper>
     <mat-step [stepControl]="dateFormGroup" errorMessage="Date incomplète.">
         <form [formGroup]="dateFormGroup">
@@ -71,11 +71,11 @@
             cantine
             </mat-checkbox>
 
-            @if (child.classSchool.cycle.code === "JE") {
+            @if (data.child.classSchool.cycle.code === "JE") {
                 <mat-checkbox formControlName="nurseryCtrl">garderie</mat-checkbox>
             }
 
-            @if (child.classSchool.cycle.code === "PC") {
+            @if (data.child.classSchool.cycle.code === "PC") {
                 <mat-checkbox formControlName="afterSchoolCtrl">périscolaire</mat-checkbox>
             }
 
@@ -110,7 +110,7 @@
         <p>Souhaitez-vous enregistrer cette absence ?</p>
             <mat-card>
                 <mat-card-header>
-                    <mat-card-subtitle>{{child.firstName}} {{child.lastName}} {{ child.classSchool | className }}</mat-card-subtitle>
+                    <mat-card-subtitle>{{data.child.firstName}} {{data.child.lastName}} {{ data.child.classSchool | className }}</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
                     <div>

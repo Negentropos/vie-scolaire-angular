@@ -38,8 +38,15 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login() {
     let log = this.authService.login(this.name, this.password)
+    let role = this.authService.getRole()
     if (log){
-      this.router.navigateByUrl('childs')
+      switch (role) {
+        case "parent":
+          this.router.navigateByUrl('childs/myChilds');
+          break;
+        default:
+          this.router.navigateByUrl('childs')
+      } 
     }
     else {
       this.message='Identifiant ou mot de passe invalide.'

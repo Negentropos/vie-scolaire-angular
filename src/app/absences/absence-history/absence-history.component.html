@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Historique des absences</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>{{ child.firstName }} {{child.lastName}} {{ child.classSchool| className }}</h3>
+
+    @if (child.absences.length > 0) {
+        <app-absences-child-list [absencesId]="child.absences"></app-absences-child-list>
+    } @else {
+        <p>Aucune absence renseignée au cours de cette année scolaire.</p>
+    }
+  
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Retour</button>
+</mat-dialog-actions>

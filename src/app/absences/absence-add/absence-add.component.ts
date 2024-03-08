@@ -21,6 +21,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { AbsenceService } from '../../core/services/absence.service';
 import { ClassSchool } from '../../models/class-school';
 import { ClassSchoolService } from '../../core/services/class-school.service';
+import { AuthService } from '../../core/services/auth.services';
+import { User } from '../../models/user';
+import { ChildService } from '../../core/services/child.service';
 
 
 
@@ -57,10 +60,13 @@ import { ClassSchoolService } from '../../core/services/class-school.service';
 export class AbsenceAddComponent implements OnInit {
   constructor(
     public dialogRef : MatDialogRef<AbsenceAddComponent>,
-    @Inject(MAT_DIALOG_DATA) public child: Child,
+    @Inject(MAT_DIALOG_DATA) public data: {
+      child : Child,
+      user : User
+    },
       private formBuilder : FormBuilder,
       private absenceService : AbsenceService,
-      private classSchoolService : ClassSchoolService,
+      private childService : ChildService,
       ) {} 
 
   minDate!: Date;
@@ -168,7 +174,8 @@ export class AbsenceAddComponent implements OnInit {
         allDay : this.dateFormGroup.value.specifiedHours === 'oneDay' ? true : false,
         nursery : this.desinscriptionFormGroup.value.nurseryCtrl ? true : false ,
         afterSchool : this.desinscriptionFormGroup.value.afterSchoolCtrl ? true : false ,
-        childId : this.child.id,
+        childId : this.data.child.id,
+        user : this.data.user,
       }
     }
 

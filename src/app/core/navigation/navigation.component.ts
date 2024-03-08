@@ -10,6 +10,8 @@ import { AsyncPipe, NgIf } from '@angular/common';
 import { Observable, Subscription, async } from 'rxjs';
 import { User } from '../../models/user';
 import { NavbarService } from '../services/navbar.service';
+import { MyProfilComponent } from '../../auth/my-profil/my-profil.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
     selector: 'app-navigation',
@@ -41,7 +43,8 @@ export class NavigationComponent implements OnInit, OnDestroy {
   constructor(
     private router:Router,
     private navbarService : NavbarService,
-    private authService : AuthService){
+    private authService : AuthService,
+    public dialog: MatDialog){
       this.subscription$ = this.navbarService.showNavbar.subscribe((value)=>{
         this.showNavbar = value;
       })
@@ -56,12 +59,15 @@ export class NavigationComponent implements OnInit, OnDestroy {
     this.authService.logout()
     }
 
-  onMyProfilClick() {
-    this.router.navigateByUrl('profil')
-  }
 
   ngOnDestroy():void{
     this.subscription$.unsubscribe()
+  }
+
+  openProfilInfo(user : User):void {
+    const dialogRef = this.dialog.open(MyProfilComponent, {
+      data: user,
+    });
   }
   
 }

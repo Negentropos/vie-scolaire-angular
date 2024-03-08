@@ -1,0 +1,32 @@
+<mat-card class="p-3 pb-2" *ngIf="myChild$ | async as child">
+    <mat-card-content class=" mb-2">
+        <div class="row justify-content-between">
+            <div class="col mb-3">
+                <mat-card-title>
+                    {{ child.firstName }} {{ child.lastName }} 
+                </mat-card-title>
+                <mat-card-subtitle>
+                    {{ child.classSchool| className }}
+                </mat-card-subtitle>
+            </div>
+            <div class="col-2 d-flex justify-content-end">
+                    <button mat-mini-fab (click)="onAddNewAbsence(child,user)" matTooltip="Signaler une absence"
+                    matTooltipPosition="below" color="accent" aria-label="Absence button">
+                        <mat-icon>calendar_today</mat-icon>
+                    </button>
+                    <button mat-mini-fab color="warn" matTooltip="Historique des absences"
+                    matTooltipPosition="below" class="ms-3" (click)="onViewAbsenceHistory(child)">
+                        <mat-icon>date_range</mat-icon>
+                    </button>
+            </div>
+        </div>
+        @if (child.absences.length != 0) {
+            <p>Dernières absences enregistrées</p>
+            <app-absences-child-list [absencesId]="lastAbsences(child.absences)"></app-absences-child-list>
+
+        } @else {
+            <span>Aucune absence enregistrée.</span>
+        }
+    </mat-card-content>
+
+</mat-card>

@@ -1,0 +1,13 @@
+<div class="container-xl">
+    <div class="row">
+        <div class="col-lg-8 col-12 offset-lg-2 mt-lg-3 mt-2" *ngIf="user$ | async as user">
+            @for (childId of user.childId; track $index) {
+                <div class="mb-2">
+                <app-my-child-detail [user]="user" [childId]="childId"></app-my-child-detail>
+                </div>
+            } @empty {
+                <p>Erreur : aucun enfant n'est affilié à votre compte.</p>
+            }
+        </div>
+    </div>
+</div>
