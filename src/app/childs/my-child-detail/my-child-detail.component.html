@@ -20,13 +20,9 @@
                     </button>
             </div>
         </div>
-        @if (child.absences.length != 0) {
-            <p>Dernières absences enregistrées</p>
-            <app-absences-child-list [absencesId]="lastAbsences(child.absences)"></app-absences-child-list>
 
-        } @else {
-            <span>Aucune absence enregistrée.</span>
-        }
+        <app-absences-child-list [absencesId]="lastAbsences(child.absences)"></app-absences-child-list>
+
     </mat-card-content>
 
 </mat-card>

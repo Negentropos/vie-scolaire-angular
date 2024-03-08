@@ -19,9 +19,6 @@ import { Absence } from '../../models/absence';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AbsenceService } from '../../core/services/absence.service';
-import { ClassSchool } from '../../models/class-school';
-import { ClassSchoolService } from '../../core/services/class-school.service';
-import { AuthService } from '../../core/services/auth.services';
 import { User } from '../../models/user';
 import { ChildService } from '../../core/services/child.service';
 

@@ -23,13 +23,9 @@
                                 </button>
                         </div>
                     </div>
-                    @if (child.absences.length != 0) {
-        
-                        <app-absences-child-list [absencesId]="child.absences"></app-absences-child-list>
-        
-                    } @else {
-                        <span>Aucune absence enregistrée.</span>
-                    }
+
+                    <app-absences-child-list [absencesId]="child.absences"></app-absences-child-list>
+
                 </mat-card-content>
 
             </mat-card>

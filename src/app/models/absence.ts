@@ -3,14 +3,14 @@ import { User } from "./user";
 export interface Absence {
     id? : number;
     date : Date;
-    startTime : String;
-    endTime : String;
+    startTime : string;
+    endTime : string;
     declarationDate : Date;
-    description : String;
-    canteen : Boolean;
-    allDay : Boolean;
-    nursery : Boolean;
-    afterSchool : Boolean;
+    description : string;
+    canteen : boolean;
+    allDay : boolean;
+    nursery : boolean;
+    afterSchool : boolean;
     user? : User;
     childId: number;
 }

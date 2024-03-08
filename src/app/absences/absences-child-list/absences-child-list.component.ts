@@ -6,6 +6,8 @@ import { AsyncPipe, DatePipe, NgIf } from '@angular/common';
 import {MatDividerModule} from '@angular/material/divider';
 import { AbsenceService } from '../../core/services/absence.service';
 import { Observable } from 'rxjs';
+import { ShortAbsenceDescriptionPipe } from '../../shared/pipes/short-absence-description.pipe';
+import { AbsenceTimePipe } from '../../shared/pipes/absence-time.pipe';
 
 
 
@@ -13,7 +15,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-absences-child-list',
   standalone: true,
-  imports: [MatExpansionModule,MatAccordion,NgIf,AsyncPipe,MatButtonModule,DatePipe,MatDividerModule],
+  imports: [MatExpansionModule,MatAccordion,NgIf,AsyncPipe,MatButtonModule,DatePipe,MatDividerModule,AbsenceTimePipe],
   templateUrl: './absences-child-list.component.html',
   styleUrl: './absences-child-list.component.scss'
 })

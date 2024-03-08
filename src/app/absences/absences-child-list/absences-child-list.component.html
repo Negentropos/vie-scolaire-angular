@@ -7,37 +7,48 @@
         <mat-expansion-panel *ngIf="absence$ | async as absence">
             <mat-expansion-panel-header>
               <mat-panel-title>
-                {{ absence.date | date : 'dd/MM/yyyy' }}
+                {{ absence.date | date : 'dd/MM/yyyy' }} @if (!absence.allDay) { de {{ absence.startTime | absenceTime }} à {{ absence.endTime | absenceTime }}  }
+
               </mat-panel-title>
-              <mat-panel-description>
-                {{ absence.description }}
+              <mat-panel-description >
+                <span class="d-inline-block text-truncate description-width">
+                    {{ absence.description}}
+                </span>
               </mat-panel-description>
             </mat-expansion-panel-header>
-                @if (absence.allDay) {
-                    <p>Journée entière.</p>
-                } @else {
-                    <p>De {{ absence.startTime}} à {{ absence.endTime }}</p>
-                }
-            <p>
-                @if (absence.canteen || absence.nursery || absence.afterSchool) {
-                    <mat-divider></mat-divider>
-                }
+            <table class="table table-no-border">
+                <thead>
+                    <tr>
+                        <th>Désinscription</th>
+                        <th>Motif</th>
+                        <th>Déclaration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            @if (absence.canteen) {
+                            <div class="mb-1"><button mat-stroked-button color="accent">Cantine</button></div>
+                        }
+        
+                        @if (absence.nursery) {
+                            <div><button mat-stroked-button color="warn">Garderie</button></div>
+                        }
+        
+                        @if (absence.afterSchool) {
+                            <div><button mat-stroked-button color="warn">Périscolaire</button></div>
+                        }
+                        </td>
+                        <td>{{ absence.description}}</td>
+                        <td>le {{ absence.declarationDate | date : "dd/MM/yyyy à HH:mm" }} par  {{ absence.user?.firstName}} {{ absence.user?.lastName}}</td>
+                    </tr>
+                </tbody>
 
-                @if (absence.canteen) {
-                    <span>Annulation cantine </span>
-                }
-
-                @if (absence.nursery) {
-                    <span>Annulation cantine </span>
-                }
-
-                @if (absence.afterSchool) {
-                    <span>Annulation cantine </span>
-                }
-            </p>
-            <mat-divider></mat-divider>
-            <p>Absence déclarée le {{ absence.declarationDate | date : "dd/MM/yyyy à HH:mm" }} par  {{ absence.user?.firstName}} {{ absence.user?.lastName}}</p>
+            </table>
+           
           </mat-expansion-panel>
+    } @empty {
+        <p>Aucune absence enregistrée.</p>
     }
    
 </mat-accordion>
