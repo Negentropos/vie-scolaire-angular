@@ -9,7 +9,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { MatCard, MatCardContent, MatCardModule } from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { take } from 'rxjs';
 import { ClassNamePipe } from '../../shared/pipes/class-name.pipe';
 
@@ -17,7 +17,6 @@ import { ClassNamePipe } from '../../shared/pipes/class-name.pipe';
   selector: 'app-childs-list',
   standalone: true,
   imports: [MatCardModule,
-    MatCardContent,
     MatFormField,
     MatLabel,
     MatInput,
