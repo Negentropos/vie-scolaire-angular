@@ -1,3 +1,4 @@
+import { Child } from "./child";
 import { User } from "./user";
 
 export interface Absence {
@@ -12,5 +13,5 @@ export interface Absence {
     nursery : boolean;
     afterSchool : boolean;
     user? : User;
-    childId: number;
+    child: Child;
 }

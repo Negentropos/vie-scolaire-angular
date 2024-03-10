@@ -4,11 +4,11 @@ import { User } from '../../models/user';
 import { AsyncPipe, NgFor, NgIf, NgPlural } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { PluralizePipe } from '../../shared/pipes/pluralize.pipe';
-import { UserService } from '../../core/services/user.service';
 import { Observable } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-child-parents-contact',

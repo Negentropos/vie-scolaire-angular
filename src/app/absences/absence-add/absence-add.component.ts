@@ -18,9 +18,9 @@ import { MatCardModule } from '@angular/material/card';
 import { Absence } from '../../models/absence';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { AbsenceService } from '../../core/services/absence.service';
 import { User } from '../../models/user';
-import { ChildService } from '../../core/services/child.service';
+import { AbsenceService } from '../../services/absence.service';
+import { ChildService } from '../../services/child.service';
 
 
 

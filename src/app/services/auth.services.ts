@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../../models/user';
 import { UserService } from './user.service';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'ngx-webstorage';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +19,8 @@ export class AuthService {
     const isLoggedIn = (name == 'clement' && password == '123')  ;
     if (isLoggedIn){
       this.localStorage.store("access_token","falseToken");
-      this.localStorage.store("userId",9);
-      this.localStorage.store("userRole","parent")
+      this.localStorage.store("userId",1);
+      this.localStorage.store("userRole","admin")
       return true;
     } else {
       return false;

@@ -4,7 +4,6 @@ import { Observable, map, take } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { NgIf, NgFor, AsyncPipe } from '@angular/common';
 import { Child } from '../../models/child';
-import { ChildService } from '../../core/services/child.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {MatDialog,} from '@angular/material/dialog';
@@ -13,8 +12,9 @@ import { AbsencesChildListComponent } from '../../absences/absences-child-list/a
 import { AbsenceAddComponent } from '../../absences/absence-add/absence-add.component';
 import { ClassNamePipe } from '../../shared/pipes/class-name.pipe';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { AuthService } from '../../core/services/auth.services';
 import { User } from '../../models/user';
+import { ChildService } from '../../services/child.service';
+import { AuthService } from '../../services/auth.services';
 
 @Component({
     selector: 'app-child-detail',

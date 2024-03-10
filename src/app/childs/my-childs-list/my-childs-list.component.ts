@@ -1,12 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Child } from '../../models/child';
-import { ChildService } from '../../core/services/child.service';
-import { ChildDetailComponent } from '../child-detail/child-detail.component';
-import { AuthService } from '../../core/services/auth.services';
 import { User } from '../../models/user';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { MyChildDetailComponent } from '../my-child-detail/my-child-detail.component';
+import { AuthService } from '../../services/auth.services';
 
 @Component({
   selector: 'app-my-childs-list',

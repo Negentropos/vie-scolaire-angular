@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Child } from '../../models/child';
-import { ChildService } from '../../core/services/child.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AbsenceHistoryComponent } from '../../absences/absence-history/absence-history.component';
 import { User } from '../../models/user';
+import { ChildService } from '../../services/child.service';
 
 @Component({
   selector: 'app-my-child-detail',

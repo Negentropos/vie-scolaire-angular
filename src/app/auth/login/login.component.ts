@@ -1,12 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthService } from '../../core/services/auth.services';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { NavbarService } from '../../core/services/navbar.service';
+import { AuthService } from '../../services/auth.services';
+import { NavbarService } from '../../services/navbar.service';
 
 @Component({
   selector: 'app-login',

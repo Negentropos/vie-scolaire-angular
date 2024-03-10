@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavigationComponent } from './core/navigation/navigation.component';
-import { AuthService } from './core/services/auth.services';
-import { Observable } from 'rxjs';
 import { NgIf } from '@angular/common';
 
 @Component({

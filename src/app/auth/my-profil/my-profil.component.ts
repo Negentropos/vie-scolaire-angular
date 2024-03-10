@@ -2,7 +2,6 @@ import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from '../../core/services/auth.services';
 import { MatCardModule } from '@angular/material/card';
 import { RolePipe } from '../../shared/pipes/role.pipe';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatListModule } from '@angular/material/list';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { AuthService } from '../../services/auth.services';
 
 @Component({
   selector: 'app-my-profil',

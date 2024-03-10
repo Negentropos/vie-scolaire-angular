@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Child } from '../../models/child';
-import { ChildService } from '../../core/services/child.service';
 import { Router } from '@angular/router';
 import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow, MatNoDataRow } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -12,6 +11,7 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { take } from 'rxjs';
 import { ClassNamePipe } from '../../shared/pipes/class-name.pipe';
+import { ChildService } from '../../services/child.service';
 
 @Component({
   selector: 'app-childs-list',

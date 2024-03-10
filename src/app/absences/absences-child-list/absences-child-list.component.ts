@@ -4,10 +4,10 @@ import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
 import { AsyncPipe, DatePipe, NgIf } from '@angular/common';
 import {MatDividerModule} from '@angular/material/divider';
-import { AbsenceService } from '../../core/services/absence.service';
 import { Observable } from 'rxjs';
 import { ShortAbsenceDescriptionPipe } from '../../shared/pipes/short-absence-description.pipe';
 import { AbsenceTimePipe } from '../../shared/pipes/absence-time.pipe';
+import { AbsenceService } from '../../services/absence.service';
 
 
 

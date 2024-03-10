@@ -5,13 +5,13 @@ import { MatToolbar } from '@angular/material/toolbar';
 import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
 import { Router, RouterLink } from '@angular/router';
 import { MatListItem } from '@angular/material/list';
-import { AuthService } from '../services/auth.services';
 import { AsyncPipe, NgIf } from '@angular/common';
-import { Observable, Subscription, async } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { User } from '../../models/user';
-import { NavbarService } from '../services/navbar.service';
 import { MyProfilComponent } from '../../auth/my-profil/my-profil.component';
 import { MatDialog } from '@angular/material/dialog';
+import { NavbarService } from '../../services/navbar.service';
+import { AuthService } from '../../services/auth.services';
 
 @Component({
     selector: 'app-navigation',

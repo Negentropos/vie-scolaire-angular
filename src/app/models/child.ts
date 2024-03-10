@@ -1,6 +1,4 @@
-import { Absence } from "./absence";
 import { ClassSchool } from "./class-school";
-import { User } from "./user";
 
 export interface Child {
     id : number;
@@ -8,6 +6,4 @@ export interface Child {
     lastName : string;
     gender : string;
     classSchool : ClassSchool;
-    users : number[];
-    absences : number[];
 }
